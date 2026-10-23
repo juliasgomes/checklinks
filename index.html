@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Check de Links · Apresentação</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#2f2f31;--or:#ff8200;--or2:#ff6a00;--tx:#f2f2f2;--mu:#b9b9bc;--ok:#5fd068;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}i{font-style:normal}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--tx);font-family:Montserrat,system-ui,sans-serif}
+h1,h2,h3{font-family:Poppins,system-ui,sans-serif}
+.deck{position:relative;height:100%;overflow:hidden}
+.s{position:absolute;inset:0;padding:4vh 6vw 10vh;display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;transform:translateX(6%);transition:.55s cubic-bezier(.2,.8,.2,1);overflow-y:auto}
+.s.on{opacity:1;pointer-events:auto;transform:none}.s.past{transform:translateX(-6%)}
+h1{font-size:clamp(34px,7vw,84px);line-height:1.02;font-weight:800}
+h2{font-size:clamp(24px,3.8vw,44px);font-weight:700;margin-bottom:2vh}
+h2 em,h1 em{color:var(--or);font-style:normal}
+p.lead{color:var(--mu);font-size:clamp(14px,1.6vw,19px);max-width:62ch;line-height:1.55}
+.btn{background:linear-gradient(135deg,var(--or),var(--or2));color:#fff;border:0;border-radius:12px;padding:11px 20px;font:600 14px Poppins,sans-serif;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px #ff820055}.btn.ghost{background:#ffffff14}
+.row{display:flex;gap:3vw;flex-wrap:wrap;align-items:flex-start}.row>*{flex:1 1 320px;min-width:0}
+.nodes{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.nodes i{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--or);opacity:.5;animation:fl 9s ease-in-out infinite}
+@keyframes fl{50%{transform:translate(30px,-40px) scale(1.6);opacity:.15}}
+.s>*{position:relative;z-index:1}
+.tag{display:inline-block;background:#ff820022;color:var(--or);border:1px solid #ff820066;border-radius:99px;padding:5px 14px;font:600 13px Poppins;margin-bottom:2vh;align-self:flex-start}
+.logo{font:800 22px Poppins;margin-bottom:4vh}.logo b{color:var(--or)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:2.5vh}.chip{background:#ffffff14;border-radius:99px;padding:8px 16px;font-size:14px}
+/* sheet */
+.sh{background:#fff;color:#222;border-radius:10px;overflow:hidden;font:12px Arial,sans-serif;box-shadow:0 20px 50px #0007}
+.shh{display:flex;gap:10px;align-items:center;padding:8px 12px;border-bottom:1px solid #ddd}.shh:before{content:"";width:16px;height:20px;background:#1e9e5a;border-radius:3px}.shh span{color:#777}
+.shw{overflow-x:auto}table{border-collapse:collapse;width:100%;white-space:nowrap}
+td,th{border:1px solid #e1e1e1;padding:5px 8px;text-align:left}th{background:#f4929b;font-weight:700;color:#222}
+td:first-child,th:first-child{background:#f3f3f3;color:#888;text-align:center;font-weight:400}
+td.l{color:#1a0dab;text-decoration:underline;max-width:210px;overflow:hidden;text-overflow:ellipsis}td.c{max-width:190px;overflow:hidden;text-overflow:ellipsis}
+td i{background:#eceef0;border-radius:99px;padding:2px 9px}
+tr.hl td{background:#fff3a8!important;transition:.2s}
+.sht{display:flex;gap:2px;background:#f3f3f3;border-top:1px solid #ddd;padding:0 6px}.sht span{padding:7px 12px;color:#555}.sht .on{background:#e1ebfb;color:#1a56c8;font-weight:700}
+/* devtools */
+.dt{background:#1e1e1f;border:1px solid #555;border-radius:10px;overflow:hidden;font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;color:#ddd;box-shadow:0 20px 50px #0007}
+.dth{display:flex;gap:18px;padding:8px 12px 0;background:#2b2b2d;border-bottom:1px solid #444;font:12px Montserrat}.dth span{padding-bottom:7px;color:#aaa}.dth .on{color:#8ab4f8;border-bottom:2px solid #8ab4f8}
+.dt pre{padding:10px 12px;max-height:215px;overflow:auto;font:inherit}
+.c{color:#7f9a6c}.k{color:#c586c0}.q{color:#ce9178}
+.out{border-top:1px solid #444;padding:8px 12px;min-height:110px}.out div{animation:pop .3s;word-break:break-all}.r{color:#ff5c5c;font-weight:700}.g{color:#5fd068;font-weight:700}.m{color:#8a8a8a}
+@keyframes pop{from{opacity:0;transform:translateY(4px)}}
+.stp{list-style:none;padding:0;counter-reset:n}.stp li{counter-increment:n;padding:10px 12px 10px 42px;position:relative;border-radius:10px;margin-bottom:8px;background:#ffffff0d;font-size:14px;line-height:1.45}
+.stp li:before{content:counter(n);position:absolute;left:10px;top:9px;width:22px;height:22px;border-radius:50%;background:var(--or);font:700 12px/22px Poppins;text-align:center}
+.stp li.on{background:#ff82002a;box-shadow:inset 3px 0 var(--or)}
+/* popup replica */
+.pw{flex:0 0 auto!important;margin:0 auto}
+.pp{--or:#f58220;width:380px;height:420px;padding:15px 20px 20px;background:#000;color:#fff;font-family:Montserrat,sans-serif;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;border-radius:10px;box-shadow:0 20px 60px #000a,0 0 40px #f5822033}
+.pp .tb{width:100%;height:30px;display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.pp .ic{background:none;border:0;color:var(--or);font-size:22px;font-weight:700;cursor:pointer;padding:0 5px;transition:.25s}.pp .ic:hover{color:#fff;transform:scale(1.2)}.pp .hid{visibility:hidden;opacity:0}
+.pp .lg{width:60px;height:60px;object-fit:contain;margin-bottom:5px}
+.pp h1{font:700 22px Poppins;color:var(--or);margin:0 0 10px;text-align:center}
+.pp .sw{width:100%;flex:1;position:relative;display:flex;justify-content:center}
+.pp .sc{display:none;width:100%;flex-direction:column;align-items:center;justify-content:center}.pp .sc.on{display:flex;animation:up .25s}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+.pp label{color:var(--or);font-size:14px;font-weight:500;margin:0 0 8px 20px;align-self:flex-start}
+.pp select{width:90%;height:42px;background:#fff;color:#000;border:2px solid transparent;border-radius:8px;font:600 14px Montserrat;padding:0 10px;outline:0;margin-bottom:20px}.pp select:focus{border-color:var(--or);box-shadow:0 0 8px #f5822066}
+.pp .bo{width:85%;height:42px;background:var(--or);color:#fff;border:0;border-radius:12px;font:600 15px Poppins;cursor:pointer;margin:6px 0;box-shadow:0 4px 12px #f5822040;transition:.25s}.pp .bo:hover{background:#d96f17;transform:translateY(-3px) scale(1.02)}.pp .bo:active{transform:scale(.98)}
+.pp .ld{display:none;flex-direction:column;align-items:center;justify-content:center;position:absolute;inset:0;background:#000d;z-index:10;backdrop-filter:blur(3px)}
+.pp .sp{width:38px;height:38px;border:4px solid #f5822033;border-top-color:var(--or);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.pp .lt{margin-top:12px;color:var(--or);font:600 14px Poppins}
+.pp .red{color:#ff4d4d;font-size:14px;margin-bottom:10px;text-align:center;font-weight:500}.pp .grn{color:#2ecc71;font-size:18px;margin-bottom:25px;text-align:center;font-weight:600}
+.pp .ll{width:100%;max-height:120px;overflow-y:auto;margin-bottom:15px;padding:6px;text-align:center;background:#ffffff0d;border-radius:8px}
+.pp .li{display:block;color:#fff;font-size:12px;word-break:break-all;text-decoration:underline;margin-bottom:8px;cursor:pointer}.pp .li:hover{color:var(--or)}
+@media(max-width:440px){.pp{zoom:.82}}
+/* bars, cards, calc */
+.bar{height:42px;border-radius:12px;background:#ffffff10;overflow:hidden;margin:6px 0 14px}
+.bar div{height:100%;width:0;display:flex;align-items:center;padding-left:14px;font:700 14px Poppins;transition:width 1.6s cubic-bezier(.2,.8,.2,1);white-space:nowrap}
+.b1{background:#777}.b2{background:linear-gradient(90deg,var(--or),var(--or2))}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:1vh}
+.card{perspective:900px;height:140px;cursor:pointer}.card>div{position:relative;height:100%;transition:.6s;transform-style:preserve-3d}.card.f>div{transform:rotateY(180deg)}
+.card section{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:16px;display:flex;flex-direction:column;justify-content:center}
+.card .a{background:#ffffff10;border:1px solid #ffffff22}.card .a h3{font-size:19px;color:var(--or)}.card .a small{color:var(--mu);margin-top:6px}
+.card .z{background:linear-gradient(135deg,var(--or),var(--or2));transform:rotateY(180deg);font-size:13.5px;line-height:1.4}
+.calc{background:#ffffff0c;border-radius:16px;padding:16px;margin-top:2vh}.calc input{width:100%;accent-color:var(--or)}.calc b{color:var(--or);font:700 20px Poppins}
+/* nav */
+.nav{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 2vh);display:flex;gap:10px;justify-content:center;align-items:center;z-index:9}
+.nav button{width:40px;height:40px;border-radius:50%;border:0;background:#ffffff1c;color:#fff;font-size:18px;cursor:pointer}.nav button:hover{background:var(--or)}
+.dots{display:flex;gap:7px}.dots span{width:9px;height:9px;border-radius:50%;background:#ffffff40;cursor:pointer;transition:.3s}.dots span.on{background:var(--or);width:26px;border-radius:9px}
+.conf{position:fixed;right:20px;bottom:calc(env(safe-area-inset-bottom,0px) + 3vh);font-size:11px;color:#888;z-index:9}
+
+.bgm{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.glow{position:absolute;width:46vmax;height:46vmax;border-radius:50%;background:radial-gradient(circle,#ff82003a,transparent 65%);right:-12vmax;top:-14vmax;animation:gd 14s ease-in-out infinite alternate}
+@keyframes gd{to{transform:translate(-8vmax,8vmax)}}
+.grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff0a 1px,transparent 1px),linear-gradient(90deg,#ffffff0a 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(circle at 75% 20%,#000,transparent 70%);mask-image:radial-gradient(circle at 75% 20%,#000,transparent 70%)}
+.s>.nodes,.s>.orb,.s>.tick,.s>.cf{position:absolute}.s>.nodes{z-index:0}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.s.on .tag,.s.on h1,.s.on h2,.s.on .lead,.s.on .row>*,.s.on .calc,.s.on .cards,.s.on .gw,.s.on .chips{animation:rise .6s both}
+.s.on .row>*:nth-child(2){animation-delay:.12s}
+.orb{--r:calc(min(38vw,380px)/2);right:8vw;top:50%;width:min(38vw,380px);aspect-ratio:1;margin-top:calc(min(38vw,380px)/-2);z-index:0}
+.orb .rg{position:absolute;inset:0;border:1px dashed #ff820077;border-radius:50%;animation:sp 26s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.pl{display:block;position:absolute;left:50%;top:50%;transform:rotate(var(--a)) translateX(var(--r))}
+.pc{display:block;width:0;height:0;animation:cs 26s linear infinite}
+@keyframes cs{from{transform:rotate(calc(var(--a)*-1))}to{transform:rotate(calc(var(--a)*-1 - 360deg))}}
+.pc span{position:absolute;left:0;top:0;transform:translate(-50%,-50%);background:#2f2f31;border:1px solid var(--or);border-radius:99px;padding:6px 13px;font:600 12px Poppins;white-space:nowrap}
+.ck{position:absolute;inset:26%;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--or2));display:flex;align-items:center;justify-content:center;font:700 clamp(40px,7vw,86px) Poppins;animation:pl2 2.6s ease-in-out infinite}
+@keyframes pl2{0%,100%{box-shadow:0 0 0 0 #ff820066}50%{box-shadow:0 0 0 28px #ff820000}}
+.tick{left:0;right:0;bottom:11vh;overflow:hidden;white-space:nowrap;color:#8d8d90;font:12px Poppins;z-index:0}.tick div{display:inline-block;animation:tk 36s linear infinite}
+@keyframes tk{to{transform:translateX(-50%)}}
+@media(max-width:700px){.orb{opacity:.22;right:-12vw}}
+.sm .chip{font-size:12px;padding:5px 12px;background:#ff82001f}
+.shw{max-height:min(46vh,360px);overflow:auto}th{position:sticky;top:0;z-index:2}
+.mini{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.mini button{width:28px;height:28px;border-radius:50%;border:1px solid;background:transparent;font-size:13px;cursor:pointer;opacity:.4;transition:.2s}.mini button:hover{opacity:1;transform:scale(1.12)}.mini .ok{color:#5fd068}.mini .no{color:#ff5c5c}
+.gw{background:#131314;border:1px solid #ffffff1f;border-radius:16px;overflow:hidden;max-width:880px;width:100%;box-shadow:0 20px 50px #0007}
+.gh{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #ffffff14;font:600 14px Poppins}.gh b{background:linear-gradient(90deg,#8ab4f8,#c58af9);-webkit-background-clip:text;background-clip:text;color:transparent}.gh span{color:#8a8a8a;font-size:12px}
+.gm{height:min(46vh,370px);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.mg{display:none;animation:pop .4s}.mg.v{display:block}
+.mu.v{align-self:flex-end;max-width:84%;background:#28292a;border-radius:18px 18px 4px 18px;padding:12px 16px;font-size:14px;line-height:1.5}
+.ma.v{display:flex;gap:10px;font-size:14px;line-height:1.6;color:#e3e3e3;max-width:94%}.ma i{color:#8ab4f8;font-size:18px;flex:none}.ma p{margin:0}
+.mn.v{align-self:center;color:#8a8a8a;font-size:12px}
+.gf{display:flex;gap:10px;padding:10px 14px;border-top:1px solid #ffffff14;flex-wrap:wrap}
+.calc .cl{display:grid;grid-template-columns:190px 1fr;gap:12px;align-items:center;margin-top:10px;font-size:14px}.calc .bar{margin:0}.calc .hint{margin-top:10px;color:var(--mu);font-size:12.5px}.calc .hint b{font-size:13px}
+.calc b{font-size:17px}.bar div{transition:width .45s cubic-bezier(.2,.8,.2,1);padding:0}
+.calc input{margin:10px 0 4px;-webkit-appearance:none;appearance:none;height:8px;border-radius:9px;background:#ffffff1f;outline:0}.calc input::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--or);cursor:grab;box-shadow:0 0 0 6px #ff820033}.calc input::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--or);border:0}
+@media(max-width:560px){.calc .cl{grid-template-columns:1fr;gap:4px}}
+.rc{stroke-dasharray:330;stroke-dashoffset:330}.rp{stroke-dasharray:100;stroke-dashoffset:100}.s.on .rc{animation:dw 1s .2s forwards}.s.on .rp{animation:dw .6s 1s forwards}@keyframes dw{to{stroke-dashoffset:0}}
+.cf{width:9px;height:14px;top:-10px;animation:fall 2.2s ease-in forwards;z-index:3}@keyframes fall{to{transform:translate(var(--x),105vh) rotate(720deg);opacity:.2}}
+.gw{position:relative}.gh{justify-content:flex-start}.gm{padding-bottom:64px}.mg{white-space:pre-line}
+.rb{position:absolute;right:14px;bottom:14px;width:36px;height:36px;border-radius:50%;border:0;padding:0 0 0 2px;background:linear-gradient(135deg,var(--or),var(--or2));color:#fff;font-size:13px;cursor:pointer;animation:pl2 2s ease-in-out infinite;transition:transform .2s,opacity .3s}.rb:hover{transform:scale(1.12)}.rb.end{opacity:.25;pointer-events:none;animation:none}
+</style>
+</head>
+<body>
+<div class="deck"><div class="bgm"><div class="glow"></div><div class="grid"></div></div>
+
+<section class="s on">
+  <div class="nodes" id="nodes"></div>
+    <span class="tag">Automação · Extensão Chrome</span>
+  <h1>Check de <em>Links</em></h1>
+  <p class="lead" style="margin:2vh 0 4vh;font-size:clamp(16px,2.2vw,26px)">Processo de criação à utilização</p>
+  <div><button class="btn" onclick="go(1)">Começar ▸</button></div>
+  </section>
+
+<section class="s">
+  <span class="tag">O problema</span>
+  <h2>Conferir publicações era <em>100% manual</em></h2>
+  <div class="row">
+    <div>
+      <p class="lead">A conferência de publicações era feita de forma 100% manual: o processo consumia muito tempo, cerca de 40 minutos diários, era cansativo e abria margem para erros e falhas humanas.</p>
+      <p class="lead" style="margin-top:12px">Era um trabalho feito <b style="color:var(--or)">em cada canal, de cada marca</b>.</p>
+    </div>
+    <div class="sh" style="flex:1.4 1 340px"><div class="shh"><b>BASE_POSTS</b></div><div class="shw"><table id="tb"></table></div><div class="sht"><span class="on">BASE_POSTS</span><span>BASE_INTERACOES</span><span>Contagem de Links</span></div></div>
+  </div>
+</section>
+
+<section class="s" id="c2"></section>
+
+<section class="s">
+  <span class="tag">Primeira solução</span>
+  <h2>O processo com o <em>DevTools</em> do navegador</h2>
+  <div class="row">
+    <div style="flex:0 1 280px">
+      <ol class="stp"><li>Abra a rede social e role a página até carregar os posts.</li><li>Aperte <b>F12</b> e abra a aba <b>Console</b>.</li><li>Cole a base da planilha no código, entre as crases.</li><li>Cole o código no Console e aperte <b>Enter</b>.</li></ol>
+    </div>
+    <div style="flex:1 1 440px">
+      <div class="dt"><div class="dth"><span>Elements</span><span class="on">Console</span><span>Sources</span><span>Network</span></div>
+<pre><i class="k">(function</i> () {
+  <i class="c">// 1. Sua BASE EXISTENTE colada abaixo:</i>
+  <i class="k">const</i> baseAntigaTexto = <i class="q">`
+https://www.instagram.com/p/DK0HHaguc89/
+https://www.instagram.com/p/DLMyUR9ts8F/
+https://www.instagram.com/reel/DK-CFkHO0XJ/
+...
+`</i>;
+
+  <i class="c">// 2. IDs que já estão na base</i>
+  <i class="k">const</i> idsNaBase = <i class="k">new</i> Set(baseAntigaTexto.match(/[A-Za-z0-9_-]{9,22}/g) || []);
+
+  <i class="c">// 3. Varre os links da página</i>
+  <i class="k">const</i> novos = <i class="k">new</i> Map();
+  document.querySelectorAll('a[href*="/p/"], a[href*="/reel/"]').forEach(a =&gt; {
+    <i class="k">const</i> url = a.href.split('?')[0];
+    <i class="k">const</i> m = url.match(/\/(p|reel|reels)\/([A-Za-z0-9_-]+)/);
+    <i class="k">if</i> (m &amp;&amp; !idsNaBase.has(m[2])) novos.set(m[2], url);
+  });
+
+  <i class="c">// 4. Mostra o resultado</i>
+  console.clear();
+  console.log(`--- CHECK DE LINKS: ${novos.size} POST(S) NOVO(S) ENCONTRADO(S) ---`);
+  novos.size ? novos.forEach(u =&gt; console.log(u))
+             : console.log('Todos os links desta página já existem na sua base!');
+})();</pre>
+      <div class="out" id="out"><div class="m">&gt; Cole o código e aperte Enter…</div></div></div>
+      <div class="mini"><button class="ok" onclick="runDT(0)" title="Tudo certo">✓</button><button class="no" onclick="runDT(1)" title="Posts novos">✗</button></div>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:2.5vh;font-size:14px">Ganhamos a rolagem de tela, mas ainda havia retrabalho: colar a base no código todo dia e ajustar o script para cada rede social.</p>
+</section>
+
+<section class="s" id="c4"></section>
+
+<section class="s">
+  <span class="tag">O app</span>
+  <h2>A extensão, <em>funcionando</em></h2>
+  <div class="row" style="align-items:center">
+    <div class="pw">
+      <div class="pp" id="pp">
+        <div class="tb"><button class="ic hid" id="pb" title="Voltar">&#8592;</button><button class="ic" id="px" title="Fechar">&#10005;</button></div>
+        <img class="lg" src="data:image/png;base64,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" alt="Logo">
+        <div class="sw">
+          <div class="ld" id="ld"><div class="sp"></div><div class="lt">Carregando...</div></div>
+          <div class="sc on" id="s1"><h1>Check de Links</h1><label>Selecione a Planilha:</label><select id="sg"><option value="renner">Renner</option><option value="youcom">Youcom</option></select><button class="bo" id="n1">Avançar</button></div>
+          <div class="sc" id="s2"><h1>Check de Links</h1><label>Selecione a Marca:</label><select id="sb"></select><button class="bo" id="n2">Fazer o Check</button></div>
+          <div class="sc" id="s3"><h1>Check de Links</h1><button class="bo" data-c="instagram">Instagram</button><button class="bo" data-c="tiktok">TikTok</button><button class="bo" data-c="twitter">Twitter</button><button class="bo" id="pin" data-c="pinterest">Pinterest</button></div>
+          <div class="sc" id="s4"><h1>Check de Links</h1><div class="red">O link seguinte não esta na sua base</div><div class="ll" id="ml"></div><button class="bo" id="r1">Conferir</button></div>
+          <div class="sc" id="s5"><h1>Check de Links</h1><div class="grn">Sua base está completa!</div><button class="bo" id="r2">Conferir</button></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="lead" style="margin-bottom:14px">Para utilizar, basta seguir as instruções da extensão:</p>
+      <ol class="stp" id="st"><li>Primeiro escolha a planilha relacionada à marca em que está trabalhando.</li><li>Depois escolha qual marca* quer verificar.</li><li>Por último, o canal em que vai fazer o check.</li><li>Se estiver tudo certo, aparece uma mensagem avisando (verde). Se faltar algum link, eles aparecem em vermelho.</li></ol>
+      <p class="lead" style="font-size:12.5px;font-style:italic">*Facebook não integra esta checagem, pois limitações de acesso externo impedem a leitura dos links pela ferramenta de monitoramento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="c6"></section>
+
+<section class="s">
+  <span class="tag">Resultados</span>
+  <h2>Principais <em>ganhos</em></h2>
+  <div class="calc">
+    <div>Arraste e veja o tempo acumulado em <b id="dn">5</b> dias úteis</div>
+    <input type="range" id="rg" min="1" max="20" value="5">
+    <div class="cl"><span>Manual · <b id="tm"></b></span><div class="bar"><div class="b1" id="bm"></div></div></div>
+    <div class="cl"><span>Extensão · <b id="te"></b></span><div class="bar"><div class="b2" id="ba"></div></div></div>
+    <div class="hint">Manual: 40 min por dia útil · Extensão: até 5 min, 1 vez por semana · Economia: <b id="sv"></b></div>
+  </div>
+  <div class="cards">
+    <div class="card"><div><section class="a"><h3>⏱ Eficiência</h3></section><section class="z">A automação eliminou a rotina diária de rolagem de tela: de cerca de 40 minutos diários para até 5 minutos.</section></div></div>
+    <div class="card"><div><section class="a"><h3>✅ Certificação</h3></section><section class="z">A conferência “olho no olho” é vulnerável a cansaço e distração. O código garante precisão e confiabilidade na validação.</section></div></div>
+    <div class="card"><div><section class="a"><h3>📈 Escalabilidade</h3></section><section class="z">O volume de posts ou canais pode dobrar ou triplicar sem aumentar a carga: conferir 10 ou 100 posts leva cerca de 1 segundo.</section></div></div>
+  </div>
+
+</section>
+
+<section class="s" style="align-items:center;text-align:center;overflow:hidden">
+  <div class="nodes" id="nodes2"></div>
+  <h1 style="cursor:pointer;font-size:clamp(48px,11vw,140px)" onclick="conf()">Obrigada<em>!</em></h1>
+</section>
+</div>
+<div class="nav"><button onclick="go(i-1)" aria-label="Anterior">‹</button><div class="dots" id="dots"></div><button onclick="go(i+1)" aria-label="Próximo">›</button></div>
+
+<script>
+var $=function(x){return document.getElementById(x)},Q=function(s){return [].slice.call(document.querySelectorAll(s))};
+var S=Q('.deck>.s'),i=0,dots=$('dots');
+S.forEach(function(_,k){var d=document.createElement('span');d.onclick=function(){go(k)};dots.appendChild(d)});
+function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach(function(s,k){s.className='s'+(k==i?' on':k<i?' past':'')});
+Q('.dots span').forEach(function(d,k){d.className=k==i?'on':''});if(i==7)gain();if(i==8)conf()}
+document.addEventListener('keydown',function(e){if(e.target.tagName=='SELECT'||e.target.tagName=='INPUT')return;if((e.key=='ArrowDown'||e.key==' ')&&CD[i]){e.preventDefault();nxt(i);return}if(e.key=='ArrowRight')go(i+1);if(e.key=='ArrowLeft')go(i-1)});
+var tx=0;document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX});
+document.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>80&&!e.target.closest('.pp,.dt,.sh,.gw,input'))go(d<0?i+1:i-1)});
+['nodes','nodes2'].forEach(function(id){var c=$(id);for(var k=0;k<16;k++){var n=document.createElement('i');n.style.left=Math.random()*100+'%';n.style.top=Math.random()*100+'%';n.style.animationDelay=(-Math.random()*9)+'s';n.style.animationDuration=(6+Math.random()*8)+'s';c.appendChild(n)}});
+/* planilha */
+var BR=['Youcom','Cotton On','Approve','BAW','FARM'];
+var HDL={'Youcom':'youcom','Cotton On':'cottonon_brasil','Approve':'justapprove','BAW':'bawclothing','FARM':'adorofarm'};
+var sd=7;function rd(){sd=(sd*9301+49297)%233280;return sd/233280}
+function ra(n,a){var o='';for(var k=0;k<n;k++)o+=a.charAt(Math.floor(rd()*a.length));return o}
+var AL='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',DG='0123456789';
+var CP=['Nova coleção chegando 💛','Look do dia: confortável e cheio de estilo','Só hoje: ofertas imperdíveis!','Bastidores da campanha ✨','Você já viu a novidade na loja?','Combina com tudo e com todo mundo','Frete grátis neste fim de semana','A tendência da estação chegou'];
+var rows=[];['instagram','tiktok','twitter'].forEach(function(c){BR.forEach(function(b){for(var k=0;k<8;k++){var h=HDL[b],l=c=='instagram'?'https://www.instagram.com/'+(rd()<.7?'p':'reel')+'/D'+ra(10,AL)+'/':c=='tiktok'?'https://www.tiktok.com/@'+h+'/video/75'+ra(17,DG):'https://x.com/'+h+'/status/19'+ra(17,DG);rows.push([('0'+(1+Math.floor(rd()*28))).slice(-2)+'/'+('0'+(7+Math.floor(rd()*4))).slice(-2)+'/2026',c,b,l,CP[Math.floor(rd()*CP.length)]])}})});
+$('tb').innerHTML='<tr><th>1</th><th>DATE</th><th>CHANNEL</th><th>BRAND</th><th>LINK</th><th>CONTENT</th></tr>'+rows.map(function(r,k){return '<tr class="d"><td>'+(k+2)+'</td><td>'+r[0]+'</td><td><i>'+r[1]+'</i></td><td><i>'+r[2]+'</i></td><td class="l">'+r[3]+'</td><td class="c">'+r[4]+'</td></tr>'}).join('');
+/* chats */
+var CD={2:{t:'Conversa com o Gemini',h:'Do console para um código <em>mais inteligente</em>',m:[
+['u','Descobri que dá para listar todos os links visíveis da página pelo Console do navegador (F12), mas ainda preciso olhar um por um para ver quais já estão na planilha. Dá para fazer um código mais inteligente? Eu colaria a lista dos links antigos da nossa base e ele compararia com a página.'],
+['a','Dá, sim! Cole a lista da sua base dentro do código: ele varre a página, compara os dois lados e responde na hora. Em verde, quando está tudo certo e nada falta. Em vermelho, mostrando exatamente quais posts são novos e precisam ser adicionados.']]},
+4:{t:'Conversa com o Gemini',h:'Perguntando sobre o <em>app</em>',m:[
+['u','Teria como eu criar um aplicativo, extensão, algo assim? Tipo assim: eu entro nele, seleciono a pasta que eu quero fazer esse check, quando clicar, eu escolho o canal, por exemplo Insta, e já está programado pra ele selecionar o código extraindo os links das páginas e das planilhas, e me dando os faltando. Aí volto e vou pra outro canal.'],
+['a','Sim, com certeza! A melhor solução para o que você quer fazer é criar uma Extensão do Chrome (Chrome Extension).\n\nComo você executa esse processo repetidamente para vários canais e marcas, uma extensão elimina totalmente a necessidade de abrir o Console do navegador, digitar “allow pasting” ou ficar copiando e colando código manualmente.\n\nComo essa Extensão Funcionaria (O Fluxo Ideal)'],
+['u','Eu quero que as únicas informações na tela sejam a planilha. Depois que você selecionar ela, vai para outra página que escolhe o canal. Quero que os links da planilha 1 e 2 estejam dentro dos documentos, incluindo todos os códigos, e quero que ele puxe da planilha os códigos e use o Java F12 e aquele código que você me falou para inspecionar a página, para que ele automaticamente pegue da planilha e puxe toda a base todas as vezes, e o Java confira com todos os links da página, e que seja possível ir descendo a página e apertando rodar de novo, para ele ir lendo. Todos os links devem ser clicáveis…\n\nEu quero ter acesso a 2 planilhas, e quando entrar lá você escolhe qual das duas marcas você quer fazer o check, depois escolhe em qual canal.'],
+['a','Aqui estão os arquivos atualizados para a sua extensão. Agora ela suporta 2 Planilhas configuráveis, permite escolher a Marca/Planilha e o Canal através de menus de seleção (dropdowns), e automatiza a seleção da aba correta para a auditoria.\n\n1. popup.html\nSubstitua todo o conteúdo do seu popup.html por este:'],
+['u','Quero, e quero que ela conecte direto com a planilha Sheets direto, tipo o Looker.'],
+['a','Criar uma extensão do Chrome integrada diretamente ao Google Sheets é a melhor solução: você mantém suas planilhas centralizadas (estilo Looker Studio) e a extensão lê/escreve nelas em tempo real via API do Google.\n\nAbaixo está o guia passo a passo e todos os códigos necessários para criar e rodar a sua extensão.\n\n1. Estrutura de Arquivos da Extensão\nCrie uma pasta no seu computador chamada auditor-redes-sociais e insira os 4 arquivos descritos a seguir:']]},
+6:{t:'Conversa com o Gemini',h:'Testando nas páginas reais e <em>corrigindo erros</em>',m:[
+['u','SÓ TEM 1 PROBLEMA, ele está puxando links que são nada a ver também, não somente de posts\nhttps://www.instagram.com/\nhttps://www.instagram.com/reels/'],
+['a','O problema está na forma como o script captura os links na tela. Ele estava pegando todos os elementos <a> que continham instagram.com, incluindo menus de navegação (/explore/, /direct/), destaques de stories (/stories/), rodapés (/legal/privacy/) e perfis de usuários (/followers/).\n\nPara resolver isso de forma definitiva, precisamos filtrar os links exigindo que a URL contenha estritamente o padrão de posts e vídeos individuais de cada rede.\n\nO que muda nos filtros por Canal:\nInstagram: Aceita apenas URLs que contenham /p/ ou /reel/ (elimina stories, menus…']]}};
+Object.keys(CD).forEach(function(k){var d=CD[k];d.n=0;S[k].innerHTML='<span class="tag">'+d.t+'</span><h2>'+d.h+'</h2><div class="gw"><div class="gh"><b>✦ Gemini</b></div><div class="gm" id="gm'+k+'"></div><button class="rb" id="rb'+k+'" onclick="nxt('+k+')" title="Próxima mensagem" aria-label="Próxima mensagem">▶</button></div>';
+var g=$('gm'+k);d.m.forEach(function(x){var e=document.createElement('div');e.className='mg m'+x[0];if(x[0]=='a'){e.innerHTML='<i>✦</i><p></p>';e.lastChild.textContent=x[1]}else e.textContent=x[1];g.appendChild(e)})});
+function nxt(k){var g=$('gm'+k),m=g.children,d=CD[k];if(d.n>=m.length)return;m[d.n++].classList.add('v');$('rb'+k).classList.toggle('end',d.n>=m.length);g.scrollTop=g.scrollHeight}
+/* devtools */
+var tk=0;function runDT(n){var t=++tk,o=$('out');o.innerHTML='<div class="m">Console was cleared</div>';
+var L=n?[['r','--- CHECK DE LINKS: 3 POST(S) NOVO(S) ENCONTRADO(S) ---'],['','https://www.instagram.com/p/DExemploAB1/'],['','https://www.instagram.com/reel/DExemploCD2/'],['','https://www.instagram.com/p/DExemploEF3/']]:[['g','--- CHECK DE LINKS: 0 POST(S) NOVO(S) ENCONTRADO(S) ---'],['','Todos os links desta página já existem na sua base!']];
+L.forEach(function(l,k){setTimeout(function(){if(t!=tk)return;var d=document.createElement('div');d.className=l[0];d.textContent=l[1];o.appendChild(d)},350*(k+1))})}
+/* app */
+var PG={renner:[['renner','Renner'],['riachuelo','Riachuelo'],['cea','C&A'],['hering','Hering'],['shein','SHEIN']],youcom:[['youcom','Youcom'],['baw','BAW'],['cottonon','Cotton On'],['approve','Approve'],['farm','FARM']]};
+var HD={renner:'@lojasrenner',riachuelo:'@riachuelo',cea:'@cea_brasil',hering:'@hering_oficial',shein:'@sheinbrasil',youcom:'@youcom',baw:'@bawclothing',cottonon:'@cottonon_brasil',approve:'@justapprove',farm:'@adorofarm'};
+var P={g:'renner',cur:'s1',h:[],ch:'instagram'};
+function fill(g){$('sb').innerHTML=PG[g].map(function(m){return '<option value="'+m[0]+'">'+m[1]+'</option>'}).join('')}fill('renner');
+function sh(id,back){if(!back&&P.cur!=id)P.h.push(P.cur);P.cur=id;Q('#pp .sc').forEach(function(e){e.classList.toggle('on',e.id==id)});$('pb').classList.toggle('hid',id=='s1'||!P.h.length);
+var m={s1:0,s2:1,s3:2,s4:3,s5:3}[id];Q('#st li').forEach(function(l,k){l.classList.toggle('on',k==m)})}
+function LK(c){var h=HD[$('sb').value]||'@lojasrenner',u=h.slice(1);return{instagram:['https://www.instagram.com/p/DExemploAB1/','https://www.instagram.com/p/DExemploCD2/'],tiktok:['https://www.tiktok.com/'+h+'/video/7000000000000000001','https://www.tiktok.com/'+h+'/video/7000000000000000002'],twitter:['https://x.com/'+u+'/status/1900000000000000001','https://x.com/'+u+'/status/1900000000000000002'],pinterest:['https://www.pinterest.com/pin/1000000000001','https://www.pinterest.com/pin/1000000000002']}[c]}
+function chk(c,ok){P.ch=c;$('ld').style.display='flex';setTimeout(function(){$('ld').style.display='none';
+if(ok)return sh('s5');var b=$('ml');b.innerHTML='';LK(c).forEach(function(u){var a=document.createElement('a');a.className='li';a.textContent=u;b.appendChild(a)});sh('s4')},900)}
+$('n1').onclick=function(){P.g=$('sg').value;fill(P.g);$('pin').style.display=P.g=='youcom'?'none':'block';sh('s2')};
+$('n2').onclick=function(){sh('s3')};
+Q('#s3 .bo').forEach(function(b){b.onclick=function(){chk(b.dataset.c,false)}});
+$('r1').onclick=$('r2').onclick=function(){chk(P.ch,true)};
+$('pb').onclick=function(){if(P.h.length)sh(P.h.pop(),true)};
+$('px').onclick=function(){P.h=[];sh('s1',true)};
+sh('s1',true);
+/* ganhos */
+Q('.card').forEach(function(c){c.onclick=function(){c.classList.toggle('f')}});
+function fm(m){var h=Math.floor(m/60),r=m%60;return h?h+'h'+(r?('0'+r).slice(-2):''):m+' min'}
+var cur={m:0,e:0},raf={};
+function tw(id,to,key){var el=$(id),from=cur[key],t0=performance.now();cancelAnimationFrame(raf[key]);(function f(t){var p=Math.min(1,(t-t0)/450),v=from+(to-from)*(1-Math.pow(1-p,3));cur[key]=v;el.textContent=fm(Math.round(v));if(p<1)raf[key]=requestAnimationFrame(f)})(t0)}
+function calc(){var d=+$('rg').value,m=d*40,e=Math.ceil(d/5)*5;$('dn').textContent=d;tw('tm',m,'m');tw('te',e,'e');$('bm').style.width=(m/800*100)+'%';$('ba').style.width=Math.max(.8,e/800*100)+'%';$('sv').textContent=fm(m-e)}
+function gain(){cur.m=cur.e=0;$('bm').style.width='0';$('ba').style.width='0';setTimeout(calc,150)}
+$('rg').oninput=calc;calc();
+function conf(){for(var k=0;k<40;k++){var c=document.createElement('b');c.className='cf';c.style.left=Math.random()*100+'%';c.style.background=['#ff8200','#ff6a00','#fff','#ffb066'][k%4];c.style.animationDelay=Math.random()*.5+'s';c.style.setProperty('--x',(Math.random()*200-100)+'px');S[8].appendChild(c);setTimeout(function(e){e.remove()},2800,c)}}
+go(0);
+</script>
+</body>
+</html>
